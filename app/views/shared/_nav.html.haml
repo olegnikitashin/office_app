@@ -1,0 +1,15 @@
+.logo
+  %h1 Time tracker
+%ul.nav.nav-tabs.custom-nav
+  %li.active
+    = link_to 'Home', root_path
+  %li
+    = link_to 'Time Entries', posts_path
+  %li.dropdown.pull-right
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      Account
+      %strong.caret
+    %ul.dropdown-menu
+      %li
+        = link_to 'Edit details', edit_user_registration_path(current_user)
+        = link_to 'Log out', destroy_user_session_path, method: :delete
