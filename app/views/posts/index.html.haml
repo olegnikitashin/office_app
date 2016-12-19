@@ -1,1 +1,23 @@
 %h1 Posts
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th
+        \#
+      %th
+        Date
+      %th
+        User
+      %th
+        Rationale
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td
+          = post.id
+        %td
+          = post.date
+        %td
+          = post.user.last_name
+        %td
+          = truncate(post.rationale)
