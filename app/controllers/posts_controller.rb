@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :delete]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -33,6 +33,13 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       render :update
+    end
+  end
+
+  def destroy
+    if @post.delete
+      flash[:success] = 'Post was successfully deleted.'
+      redirect_to posts_path
     end
   end
 
