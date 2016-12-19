@@ -24,6 +24,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      flash[:success] = 'Post was successfully created.'
+      redirect_to @post
+    else
+      render :update
+    end
+  end
+
   private
 
   def post_params
