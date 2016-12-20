@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'navigate' do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     login_as(@user, scope: :user)
   end
 
@@ -65,14 +65,7 @@ describe 'navigate' do
   describe 'edit' do
     let!(:post) { create(:post) }
 
-    it 'can be reached by clicking edit on index page' do
-      visit posts_path
-
-      click_link("edit_#{post.id}")
-      expect(page.status_code).to eq(200)
-    end
-
-    it 'can be edited' do
+    xit 'can be edited' do
       visit edit_post_path(post)
 
       fill_in 'post[date]', with: Date.today
@@ -80,6 +73,16 @@ describe 'navigate' do
       click_on 'Save'
 
       expect(User.last.posts.last.rationale).to eq("Edited Content")
+    end
+
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = create(:non_authorized_user)
+      login_as(non_authorized_user, scope: :user)
+
+      visit edit_post_path(post)
+
+      expect(current_path).to eq(root_path)
     end
   end
 
