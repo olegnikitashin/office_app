@@ -56,3 +56,5 @@ gem 'haml'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'gritter'
+gem "administrate", "~> 0.3.0"
+gem "bourbon"
