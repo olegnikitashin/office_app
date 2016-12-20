@@ -1,0 +1,6 @@
+- if flash[:notice]
+  = js add_gritter(flash[:notice], image: :success, nodom_wrap: true, sticky: false)
+- elsif flash[:error]
+  = js add_gritter(flash[:error], image: :error, title: 'Error', nodom_wrap: true, sticky: false)
+- elsif flash[:alert]
+  = js add_gritter(flash[:alert], image: :error, title: 'Alert', nodom_wrap: true, sticky: false)

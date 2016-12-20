@@ -12,7 +12,4 @@
         .col-md-12
           = render 'shared/nav'
           = yield
-    - if flash[:notice]
-      = js add_gritter(flash[:notice], image: :success, nodom_wrap: true, sticky: false)
-    - elsif flash[:error]
-      = js add_gritter(flash[:notice], image: :error, title: 'Error', nodom_wrap: true, sticky: false)
+    = render 'shared/alerts'
