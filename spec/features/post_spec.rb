@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 describe 'navigate' do
+  let(:user) { create(:user) }
+
+  let(:post) do
+    Post.create(date: Date.today, rationale: 'Content', user_id: user.id )
+  end
+
   before do
-    @user = create(:user)
-    login_as(@user, scope: :user)
+    login_as(user, scope: :user)
   end
 
   describe 'index' do
@@ -20,15 +25,13 @@ describe 'navigate' do
     end
 
     it 'has a list of posts' do
-      post1 = Post.create(date: Date.today, rationale: "Content", user_id: @user.id)
-      post2 = Post.create(date: Date.today, rationale: "More Content", user_id: @user.id)
+      post1 = Post.create(date: Date.today, rationale: "Content", user_id: user.id)
+      post2 = Post.create(date: Date.today, rationale: "More Content", user_id: user.id)
       visit posts_path
       expect(page).to have_content(/Content|More Content/)
     end
 
     it 'has a scope so that only post creators can see their posts' do
-      post1 = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id)
-      post2 = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id)
 
       other_user = User.create(first_name: 'Non', last_name: 'Authorized', email: "nonauth@example.com", password: "asdfasdf", password_confirmation: "asdfasdf")
       post_from_other_user = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id)
@@ -75,7 +78,7 @@ describe 'navigate' do
   end
 
   describe 'edit' do
-    let!(:post) { create(:post) }
+    # let!(:post) { create(:post) }
 
     xit 'can be edited' do
       visit edit_post_path(post)
@@ -99,12 +102,19 @@ describe 'navigate' do
   end
 
   describe "delete" do
-    let!(:post) { create(:post) }
+    # let!(:post) { create(:post) }
 
-    xit 'can be deleted' do
+    it 'can be deleted' do
+      logout(:user)
+
+      delete_user = create(:user)
+      login_as(delete_user, scope: :user)
+
+      post_to_delete = Post.create(date: Date.today, rationale: 'asdf', user_id: delete_user.id)
+
       visit posts_path
 
-      click_link("delete_post_#{post.id}_from_index")
+      click_link("delete_post_#{post_to_delete.id}_from_index")
       expect(page.status_code).to eq(200)
     end
   end
