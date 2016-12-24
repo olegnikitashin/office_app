@@ -1,3 +1,21 @@
-%h1 Post
-= @post.date
-= @post.rationale
+%h2
+  = @post.rationale
+.well
+  %h3
+    %span
+      Overtime Amount Requested:
+      = @post.overtime_request
+  %h3
+    %span
+      Employee:
+      = @post.user.full_name
+  %h3
+    %span
+      Date:
+      = @post.date
+  %h3
+    %span
+      Current stage of approval:
+      = @post.status
+
+= link_to 'Edit', edit_post_path(@post), class: 'btn btn-primary' if policy(@post).update?
