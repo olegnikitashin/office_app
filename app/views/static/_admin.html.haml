@@ -1,6 +1,6 @@
 .container-fluid
   .pending-homepage.row
-    .homepage-block.col-md-3
-      sdsd
-    .homepage-block.col-md-3
-      sdsd
+    %h2
+      Items Pending Your Approval
+      %hr
+    = render partial: 'static/pending_approval', locals: { pending_approvals: @pending_approvals }
