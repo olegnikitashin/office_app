@@ -1,2 +1,12 @@
-%h1
-  Hi Employee
+.container-fluid
+  .row
+    - if @pending_audit_confirmations.count > 0
+      .pending-homepage.employee-blocks
+        %h3
+          Pending Your Confirmations
+        = render partial: 'static/pending_audit_confirmations', locals: { pending_audit_confirmations: @pending_audit_confirmations }
+
+    .pending-homepage.employee-blocks
+      %h3
+        Request Overtime
+      = link_to 'Request Overtime Approval', new_post_path, class: 'btn btn-primary btn-block btn-lg'
