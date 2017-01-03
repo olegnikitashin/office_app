@@ -14,5 +14,7 @@
         Status
       %th
       %th
-  %tbody
+  %tbody#audit_logs
     = render @audit_logs
+#paginator
+  = paginate @audit_logs, remote: true

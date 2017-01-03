@@ -16,6 +16,7 @@
         Status
       %th
       %th
-  %tbody
+  %tbody#posts
     = render @posts
-
+#paginator
+  = paginate @posts, remote: true
