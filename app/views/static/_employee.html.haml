@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-md-5.column.jumbotron.employee-blocks
-      dasdsd
-    .col-md-5.column.jumbotron.employee-blocks
-      dfds
+    .pending-homepage.employee-blocks
+      %h3
+        Pending Your Confirmations
+      = render partial: 'static/pending_audit_confirmations', locals: { pending_audit_confirmations: @pending_audit_confirmations }
