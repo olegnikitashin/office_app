@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   scope :posts_by, ->(user) { where(user_id: user.id) }
 
-  after_save :update_audit_log
+  # after_save :update_audit_log
 
   private
 
