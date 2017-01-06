@@ -18,6 +18,12 @@ AdminUser.create!(email: 'admin@test.com',
                   first_name: 'Oleg',
                   last_name: 'Admin',
                   phone: '1231231231')
+AdminUser.create!(email: 'olegnikitashin@gmail.com',
+                  password: 'asdfasdf',
+                  password_confirmation: 'asdfasdf',
+                  first_name: 'Oleg',
+                  last_name: 'Nikitashin',
+                  phone: '1231231231')
 
 AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 6.days))
 AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 13.days))
