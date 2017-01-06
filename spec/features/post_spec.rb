@@ -38,7 +38,7 @@ describe 'navigate' do
                                email: 'nonauth@example.com',
                                password: 'asdfasdf',
                                password_confirmation: 'asdfasdf',
-                               phone: '123123123')
+                               phone: '1231231231')
       post_from_other_user = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id, overtime_request: 3.5)
 
       visit posts_path
@@ -49,6 +49,13 @@ describe 'navigate' do
 
   describe 'new' do
     it 'has a link from the homepage' do
+      employee = Employee.create(first_name: 'Employee',
+                                last_name: 'Authorized',
+                                email: 'employee@example.com',
+                                password: 'asdfasdf',
+                                password_confirmation: 'asdfasdf',
+                                phone: '1231231231')
+      login_as(employee, scope: :user)
       visit root_path
 
       click_link("new_post_from_nav")
@@ -86,7 +93,7 @@ describe 'navigate' do
   describe 'edit' do
     # let!(:post) { create(:post) }
 
-    xit 'can be edited' do
+    it 'can be edited' do
       visit edit_post_path(post)
 
       fill_in 'post[date]', with: Date.today
