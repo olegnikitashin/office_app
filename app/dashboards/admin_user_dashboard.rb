@@ -23,6 +23,8 @@ class AdminUserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String.with_options(searchable: false),
     phone: Field::String.with_options(searchable: false),
+    ssn: Field::Number.with_options(searchable: false),
+    company: Field::String.with_options(searchable: false),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -31,13 +33,17 @@ class AdminUserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
+    :posts,
     :email,
+    :ssn,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+      :posts,
+      :ssn,
+      :company,
       :id,
       :email,
       :phone,
@@ -62,7 +68,9 @@ class AdminUserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :type,
-    :phone
+    :phone,
+    :ssn,
+    :company
   ].freeze
 
   # Overwrite this method to customize how admin users are displayed
