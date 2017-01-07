@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+gclass User < ApplicationRecord
   has_many :posts
   has_many :audit_logs
   # Include default devise modules. Others available are:
