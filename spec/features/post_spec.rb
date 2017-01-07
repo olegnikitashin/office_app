@@ -4,7 +4,7 @@ describe 'navigate' do
   let(:user) { create(:user) }
 
   let(:post) do
-    Post.create(date: Date.today, rationale: 'Content', user_id: user.id, daily_hours: 3.5)
+    Post.create(date: Date.today, work_performed: 'Content', user_id: user.id, daily_hours: 3.5)
   end
 
   before do
@@ -25,8 +25,8 @@ describe 'navigate' do
     end
 
     it 'has a list of posts' do
-      post1 = Post.create(date: Date.today, rationale: 'Content', user_id: user.id, daily_hours: 3.5)
-      post2 = Post.create(date: Date.today, rationale: 'More Content', user_id: user.id, daily_hours: 3.5)
+      post1 = Post.create(date: Date.today, work_performed: 'Content', user_id: user.id, daily_hours: 3.5)
+      post2 = Post.create(date: Date.today, work_performed: 'More Content', user_id: user.id, daily_hours: 3.5)
       visit posts_path
       expect(page).to have_content(/Content|More Content/)
     end
@@ -39,7 +39,7 @@ describe 'navigate' do
                                password: 'asdfasdf',
                                password_confirmation: 'asdfasdf',
                                phone: '1231231231')
-      post_from_other_user = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id, daily_hours: 3.5)
+      post_from_other_user = Post.create(date: Date.today, work_performed: "This post shouldn't be seen", user_id: other_user.id, daily_hours: 3.5)
 
       visit posts_path
 
@@ -74,7 +74,7 @@ describe 'navigate' do
 
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'Some rationale'
+      fill_in 'post[work_performed]', with: 'Some work performed'
       fill_in 'post[daily_hours]', with: 12.5
 
       expect { click_on 'Save' }.to change(Post, :count).by(1)
@@ -82,11 +82,11 @@ describe 'navigate' do
 
     it 'will have a user associated with it' do
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'User Association'
+      fill_in 'post[work_performed]', with: 'User Association'
       fill_in 'post[daily_hours]', with: 7.5
       click_on 'Save'
 
-      expect(User.last.posts.last.rationale).to eq("User Association")
+      expect(User.last.posts.last.work_performed).to eq("User Association")
     end
   end
 
@@ -97,10 +97,10 @@ describe 'navigate' do
       visit edit_post_path(post)
 
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'Edited Content'
+      fill_in 'post[work_performed]', with: 'Edited Content'
       click_on 'Save'
 
-      expect(User.last.posts.last.rationale).to eq("Edited Content")
+      expect(User.last.posts.last.work_performed).to eq("Edited Content")
     end
 
     it 'cannot be edited by a non authorized user' do
@@ -123,7 +123,7 @@ describe 'navigate' do
       delete_user = create(:user)
       login_as(delete_user, scope: :user)
 
-      post_to_delete = Post.create(date: Date.today, rationale: 'asdf', user_id: delete_user.id, daily_hours: 3.5)
+      post_to_delete = Post.create(date: Date.today, work_performed: 'asdf', user_id: delete_user.id, daily_hours: 3.5)
 
       visit posts_path
 

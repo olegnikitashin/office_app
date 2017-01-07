@@ -8,9 +8,9 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
 
-    it 'cannot be created without a date, rationale and daily hours' do
+    it 'cannot be created without a date, work performed and daily hours' do
       post.date = nil
-      post.rationale = nil
+      post.work_performed = nil
       post.daily_hours = nil
       expect(post).to_not be_valid
     end

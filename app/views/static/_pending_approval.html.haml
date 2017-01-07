@@ -9,7 +9,7 @@
     %p
       .pending-details
         Rationale:
-      = truncate pending_approval.rationale, length: 42
+      = truncate pending_approval.work_performed, length: 42
     .row
       .col-md-6.column
         = link_to 'Approve', approve_post_path(pending_approval), class: 'btn btn-success btn-block', id: "approve_#{pending_approval.id}"
