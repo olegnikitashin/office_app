@@ -2,4 +2,8 @@
 
 # Rails Office App
 
-Application for checking employees timetable.
+Application for checking employees overtimes.
+
+You can check the latest stable version by clicking the following link!
+
+[Link](https://on-overtime.herokuapp.com/)
