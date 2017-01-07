@@ -1,13 +1,9 @@
 %tr
   %td
-    = post.id
-  %td
     = post.overtime_request
   %td
     = post.date
-  %td
-    = post.user.full_name
-  %td
+  %td.hidden-xs
     = link_to truncate(post.rationale), post
   %td
     = status_label(post.status)
