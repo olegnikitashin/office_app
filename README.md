@@ -7,3 +7,15 @@ Application for checking employees overtimes.
 You can check the latest stable version by clicking the following link!
 
 [Link](https://on-overtime.herokuapp.com/)
+
+Please check a user interface:
+```
+email: test@test.com
+pass: asdfasdf
+```
+
+Please check an admin interface:
+```
+email: admin@test.com
+pass: asdfasdf
+```
